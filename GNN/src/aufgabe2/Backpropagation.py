@@ -14,7 +14,7 @@ class Neural_Network(object):
         self.inputSize = 2
         self.outputSize = 1
         self.hiddenSize = 4
-        self.n = 0.3
+        self.n = 0.1
 
         #weights
         self.Wji = np.random.randn(self.inputSize +1, self.hiddenSize )
