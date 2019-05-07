@@ -14,7 +14,7 @@ class Neural_Network(object):
         self.inputSize = 2
         self.outputSize = 1
         self.hiddenSize = 4
-        self.n = 0.1
+        self.n = 0.05
 
         #weights
         self.Wji = np.random.randn(self.inputSize +1, self.hiddenSize )
@@ -41,6 +41,7 @@ class Neural_Network(object):
         ek = (o - target) * self.sigmoid_derivative(self.wkj_oj)
         delta_weight_kj = - self.n * ek * self.oj
         for x in range(len(self.Wkj)):
+            #print("WKJ", self.Wkj[x])
             self.Wkj[x] = self.Wkj[x][0] + delta_weight_kj[x] 
         self.input = np.array([self.input])
         
