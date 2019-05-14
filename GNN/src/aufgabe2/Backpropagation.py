@@ -23,10 +23,10 @@ class Neural_Network(object):
     def forward(self, x,y):
         bias = 1
         self.input = np.array([x,y,bias])
-        self.wji_oi = np.array(np.dot(self.input, self.Wji))
+        self.wji_oi = np.array(np.matmul(self.input, self.Wji))
         self.wji_oi = np.append(self.wji_oi, bias)
         self.oj = np.array(self.sigmoid(self.wji_oi))
-        self.wkj_oj = np.dot(self.oj, self.Wkj) 
+        self.wkj_oj = np.matmul(self.oj, self.Wkj) 
         ok = self.sigmoid(self.wkj_oj)
         return ok 
 
@@ -69,10 +69,12 @@ for i in range(1000000): # trains the NN 1,000 times
     X.append(x)
     Y.append(y)
     O.append(o[0])
+    '''if(i == 100000):
+        sc = plt.scatter(X, Y, c=O)
+        plt.colorbar(sc)
+        plt.show()'''
 
 print("Prediction:")
-print("Expect:",calculate_target(0.9,0), NN.forward(0.9,0))
-print("Expect:",calculate_target(0,0.9), NN.forward(0,0.9))
 print("Expect:",calculate_target(0,0.5), NN.forward(0,0.5))
 print("Expect:",calculate_target(0.5,0), NN.forward(0.5,0))
 print("Expect:",calculate_target(0,0), NN.forward(0,0))
